@@ -36,7 +36,7 @@ const Sidebar = () => {
             <div className="p-4 border-b border-border/50 flex items-center justify-between">
                 {!collapsed && (
                     <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-                        <div className="p-2 rounded-lg gradient-primary">
+                        <div className="p-2 rounded-lg bg-accent">
                             <Terminal className="w-4 h-4 text-white" />
                         </div>
                         <span className="text-gradient">DevSandbox</span>

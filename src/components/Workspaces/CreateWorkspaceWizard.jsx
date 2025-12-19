@@ -51,9 +51,9 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
                         className={cn(
                             "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all",
                             s === step
-                                ? "gradient-primary text-white"
+                                ? "bg-accent text-white"
                                 : s < step
-                                    ? "bg-(--success) text-white"
+                                    ? "bg-success text-white"
                                     : "bg-muted text-muted-foreground"
                         )}
                     >

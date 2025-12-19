@@ -31,6 +31,10 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-stopped: var(--stopped);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -56,7 +60,6 @@
   --muted-foreground: oklch(0.552 0.016 285.938);
 
   --accent: #ff9900;
-  --accent-light: #ffdeac;
   --accent-foreground: oklch(0.21 0.006 285.885);
 
   --destructive: oklch(0.577 0.245 27.325);
@@ -65,16 +68,9 @@
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
 
-  --gradient-primary: linear-gradient(
-    135deg,
-    hsl(36 100% 50%),
-    hsl(28 100% 55%)
-  );
-
   --success: #5cc181;
   --warning: #f6b036;
   --stopped: #cc5454;
-  --info: #0da2e7;
 }
 
 @layer base {
@@ -98,8 +94,4 @@
 
 .glass-card {
   @apply bg-card/50 backdrop-blur-xl border border-border/50;
-}
-
-.gradient-primary {
-  background: var(--gradient-primary);
 }
