@@ -1,19 +1,11 @@
 import "./globals.css";
-import { Poppins, TASA_Orbiter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 
-const font = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "600", "700"],
-});
-
-const orbiter = TASA_Orbiter({
-  subsets: ["latin"],
-  variable: "--font-orbiter",
+  variable: "--font-inter",
   weight: ["400", "500", "600", "700"],
-  adjustFontFallback: false,
-  display: "swap",
 });
 
 export const metadata = {
@@ -24,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${font.variable} ${orbiter.variable} `}>
+      <body className={`${inter.variable}`}>
         {children}
         <Toaster position="bottom-right" />
       </body>

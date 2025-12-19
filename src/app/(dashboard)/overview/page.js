@@ -17,7 +17,7 @@ const Overview = async () => {
       <div className="space-y-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold font-orbiter">Workspaces</h1>
+            <h1 className="text-3xl font-bold">Workspaces</h1>
             <p className="text-muted-foreground font-mono mt-1">
               Manage your development environments
             </p>

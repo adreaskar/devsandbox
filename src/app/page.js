@@ -26,7 +26,7 @@ const Home = () => {
               <span>Instant cloud dev environments</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-orbiter tracking-tight">
+            <h1 className="text-5xl md:text-7xl tracking-tight">
               Code Anywhere,
               <span className="text-accent block">Deploy Instantly</span>
             </h1>
@@ -39,7 +39,7 @@ const Home = () => {
 
             <div className="flex items-center justify-center gap-4">
               <Link href="/overview">
-                <Button variant="hero" size="lg" className="gap-2">
+                <Button variant="hero" size="lg" className="gap-2 font-mono">
                   <Rocket className="w-5 h-5" />
                   Get Started Free
                 </Button>
@@ -53,7 +53,7 @@ const Home = () => {
       <section className="py-24 bg-muted/30">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium font-orbiter mb-4">
+            <h2 className="text-3xl md:text-4xl font-medium mb-4">
               Everything you need to{" "}
               <span className="text-accent">build faster</span>
             </h2>
@@ -102,14 +102,14 @@ const Home = () => {
       <section className="py-16">
         <div className="container">
           <div className="glass-card rounded-2xl p-12 text-center space-y-6 animate-glow">
-            <h2 className="text-3xl md:text-5xl font-medium font-orbiter">
+            <h2 className="text-3xl md:text-5xl font-medium">
               Ready to supercharge your workflow?
             </h2>
             <p className="text-lg text-muted-foreground font-mono max-w-2xl mx-auto">
               Join thousands of developers building faster with DevSandbox
             </p>
             <Link href="/overview">
-              <Button variant="hero" size="lg" className="gap-2">
+              <Button variant="hero" size="lg" className="gap-2 font-mono">
                 <Terminal className="w-5 h-5" />
                 Start Building Now
               </Button>
@@ -119,7 +119,7 @@ const Home = () => {
       </section>
 
       <footer>
-        <div className="container pb-7 text-center text-sm text-muted-foreground">
+        <div className="container pb-7 text-center text-sm font-mono text-muted-foreground">
           DevSandbox &copy; {new Date().getFullYear()} |{" "}
           <a
             className="text-accent"
@@ -140,7 +140,7 @@ const FeatureCard = ({ icon, title, description }) => {
       <div className="inline-flex p-3 rounded-lg bg-accent mb-4 group-hover:scale-110 transition-transform">
         <div className="text-white">{icon}</div>
       </div>
-      <h3 className="text-xl font-orbiter font-medium mb-2">{title}</h3>
+      <h3 className="text-xl font-medium mb-2">{title}</h3>
       <p className="text-muted-foreground font-mono">{description}</p>
     </div>
   );

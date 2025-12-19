@@ -46,7 +46,7 @@ function WorkspaceCard({ workspace }) {
         <Card className="glass-card hover:shadow-lg transition-all duration-300 group">
             <CardHeader>
                 <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg font-bold font-orbiter">{name}</CardTitle>
+                    <CardTitle className="text-lg font-bold">{name}</CardTitle>
                     <StatusBadge status={container.status} />
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">{description}</p>
