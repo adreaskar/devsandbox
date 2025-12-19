@@ -1,0 +1,23 @@
+# Core Data Science
+numpy
+pandas
+scipy
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Machine Learning & AI
+scikit-learn
+
+# Deep Learning (Uncomment if needed - significantly increases image size)
+# torch
+# torchvision
+# tensorflow
+
+# Jupyter Environment & Utilities
+jupyterlab
+ipykernel
+tqdm
+python-dotenv

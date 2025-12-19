@@ -1,0 +1,27 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Terminal } from "lucide-react";
+
+export const Navbar = () => {
+  return (
+    <nav className="border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-50">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+          <div className="p-2 rounded-lg bg-accent text-white">
+            <Terminal className="w-5 h-5" />
+          </div>
+          <span className="text-2xl">DevSandbox</span>
+        </Link>
+
+        <div className="flex items-center gap-4">
+          <Link href="/overview">
+            <Button variant="ghost">Dashboard</Button>
+          </Link>
+          <Link href="/overview">
+            <Button variant="default">Sign In</Button>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
+};
