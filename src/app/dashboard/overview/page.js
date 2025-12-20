@@ -4,11 +4,11 @@ import CreateWorkspace from "@/components/Workspaces/CreateWorkspace";
 import StatsGrid from "@/components/StatsGrid";
 import { WorkspaceViewProvider } from "@/context/WorkspaceView";
 import { getUserWorkspaces } from "@/actions/getWorkspaces";
+import { auth } from "@/auth";
 
 const Overview = async () => {
-  // const session = await auth();
-  // const userId = session?.user?.id || "693fbfd8760256e18a9a676f"; // Fallback for dev
-  const userId = "693fbfd8760256e18a9a676f"; // Hardcoded for now based on your setup
+  const session = await auth();
+  const userId = session?.user?.id;
 
   const workspaces = await getUserWorkspaces(userId);
 
@@ -26,11 +26,11 @@ const Overview = async () => {
           <div className="flex items-center gap-3">
             <WorkspaceViewButton />
 
-            <CreateWorkspace />
+            <CreateWorkspace userId={userId} />
           </div>
         </div>
 
-        <StatsGrid />
+        <StatsGrid userId={userId} />
 
         <WorkspaceGrid workspaces={workspaces} />
       </div>

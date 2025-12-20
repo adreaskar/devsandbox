@@ -5,25 +5,25 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from 'next/navigation'
 import { Button } from "@/components/ui/button";
+import { logoutUser } from "@/actions/authActions";
+import Image from "next/image";
 import {
     LayoutDashboard,
     FolderGit2,
-    Settings,
-    Terminal,
+    LogOut,
     ChevronLeft,
+    Server,
     ChevronRight,
 } from "lucide-react";
 
 const Sidebar = () => {
 
     const location = usePathname();
-
     const [collapsed, setCollapsed] = useState(false);
 
     const navItems = [
-        { icon: LayoutDashboard, label: "Overview", path: "/overview" },
-        { icon: FolderGit2, label: "Templates", path: "/templates" },
-        { icon: Settings, label: "Settings", path: "/settings" },
+        { icon: LayoutDashboard, label: "Overview", path: "/dashboard/overview" },
+        { icon: FolderGit2, label: "Templates", path: "/dashboard/templates" },
     ];
 
     return (
@@ -35,12 +35,10 @@ const Sidebar = () => {
         >
             <div className="p-4 border-b border-border/50 flex items-center justify-between">
                 {!collapsed && (
-                    <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-                        <div className="p-2 rounded-md bg-primary border border-border">
-                            <Terminal className="w-4 h-4 text-white" />
-                        </div>
-                        <span className="text-xl">DevSandbox</span>
-                    </Link>
+                    <>
+                        <Server className="w-5 h-5 mr-2" />
+                        <span className="text-2xl">Dashboard</span>
+                    </>
                 )}
                 <Button
                     variant="ghost"
@@ -76,8 +74,21 @@ const Sidebar = () => {
                         </Link>
                     );
                 })}
+
+                {/* 4. Render Logout Button Separately */}
+                <Button
+                    variant="ghost"
+                    onClick={() => logoutUser()} // Calls the server action
+                    className={cn(
+                        "w-full justify-start ",
+                        collapsed && "justify-center"
+                    )}
+                >
+                    <LogOut className="w-4 h-4" />
+                    {!collapsed && <span>Sign out</span>}
+                </Button>
             </nav>
-        </aside>
+        </aside >
     );
 }
 

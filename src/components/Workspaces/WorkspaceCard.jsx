@@ -43,7 +43,7 @@ function WorkspaceCard({ workspace }) {
     };
 
     return (
-        <Card className="rounded-md bg-primary border-border/50">
+        <Card className="rounded-md bg-background border-border/50">
             <CardHeader>
                 <div className="flex items-start justify-between">
                     <CardTitle className="text-lg font-bold">{name}</CardTitle>

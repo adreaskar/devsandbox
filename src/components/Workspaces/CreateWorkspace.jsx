@@ -7,13 +7,12 @@ import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
 
-function CreateWorkspace() {
+function CreateWorkspace({ userId }) {
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     return (
         <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
@@ -27,7 +26,7 @@ function CreateWorkspace() {
                 <DialogHeader>
                     <DialogTitle>Create New Workspace</DialogTitle>
                 </DialogHeader>
-                <CreateWorkspaceWizard onClose={() => setIsCreateOpen(false)} />
+                <CreateWorkspaceWizard onClose={() => setIsCreateOpen(false)} userId={userId} />
             </DialogContent>
         </Dialog>
     );

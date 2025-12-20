@@ -101,9 +101,6 @@ export async function createWorkspace(
       userId
     );
 
-    // IDE password setup
-    const idePassword = "password";
-
     const createRes = await undiciFetch(
       `${DOCKER_HOST}/containers/create?name=${CONTAINER_NAME}`,
       {
@@ -158,7 +155,7 @@ export async function createWorkspace(
       description: description || "No description",
       technologies: technologies || "Not specified",
       gitRepo: gitRepoName || "",
-      owner: "693fbfd8760256e18a9a676f", // Temporary static user ID for testing
+      owner: userId,
 
       container: {
         id: containerId,
@@ -168,17 +165,14 @@ export async function createWorkspace(
         urls: finalUrls,
         labels: {
           created_by: "devsandbox",
-          owner: userId,
         },
-        idePassword: idePassword,
       },
     });
 
     // B. Link it to the User
-    await User.findOneAndUpdate(
-      { username: "adreaskar" }, // Temporary static user for testing
-      { $push: { workspaces: newWorkspace._id } }
-    );
+    await User.findByIdAndUpdate(userId, {
+      $push: { workspaces: newWorkspace._id },
+    });
     console.log("[MONGODB] -- Database updated.");
 
     return {

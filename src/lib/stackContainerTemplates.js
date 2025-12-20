@@ -36,6 +36,7 @@ function getContainerTemplate(stack, hostPort, idePort, userId) {
         },
         Labels: {
           created_by: "devsandbox",
+          owner: userId,
         },
         HostConfig: {
           PortBindings: {

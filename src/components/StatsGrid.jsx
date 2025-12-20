@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { getContainerStats } from '@/actions/getContainerStats';
 import Window from './Window';
 
-export default function StatsGrid({ refreshKey }) {
+export default function StatsGrid({ refreshKey, userId }) {
     const [stats, setStats] = useState({ total: 0, running: 0, pending: 0, stopped: 0 });
 
     const fetchStats = async () => {
-        const result = await getContainerStats();
+        const result = await getContainerStats(userId);
         if (result.success) {
             setStats(result.data);
         }

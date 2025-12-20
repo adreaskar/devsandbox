@@ -11,7 +11,7 @@ import stackTemplates from "@/lib/stackTemplates";
 
 import { createWorkspace } from "@/actions/createWorkspace";
 
-export const CreateWorkspaceWizard = ({ onClose }) => {
+export const CreateWorkspaceWizard = ({ onClose, userId }) => {
     const [step, setStep] = useState(1);
     const [selectedStack, setSelectedStack] = useState("");
     const [workspaceName, setWorkspaceName] = useState("");
@@ -21,7 +21,7 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
 
     const handleCreate = () => {
         const launchPromise = async () => {
-            const result = await createWorkspace("adreaskar", selectedStack, workspaceName, description, technologies, gitRepoName);
+            const result = await createWorkspace(userId, selectedStack, workspaceName, description, technologies, gitRepoName);
 
             if (!result.success) throw new Error(result.error || 'Unknown error occurred');
             return result;

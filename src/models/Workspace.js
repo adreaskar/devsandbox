@@ -36,7 +36,6 @@ const WorkspaceSchema = new mongoose.Schema(
         type: Map,
         of: String,
       },
-      idePassword: String,
     },
   },
   { timestamps: true }

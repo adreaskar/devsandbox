@@ -11,9 +11,9 @@ import {
   ChartCandlestick,
   Globe,
   FileCodeCorner,
-  Wind,
 } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import Image from "next/image";
 
 const Home = () => {
   return (
@@ -185,7 +185,15 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="flex text-xs justify-end md:text-sm font-mono text-muted-foreground">
+            <div className="flex text-xs items-end justify-end md:text-sm font-mono text-muted-foreground">
+              <Image
+                src="/img/logo-negative.png"
+                alt="DevSandbox Logo"
+                width={45}
+                height={45}
+                className="mr-auto hidden md:block"
+              />
+              <span className="mx-3 md:mx-5"></span>
               <a
                 className="text-accent"
                 href="https://linkedin.com/in/andreas-karabetian/"

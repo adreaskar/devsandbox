@@ -9,10 +9,10 @@ const dockerAgent = new Agent({
   },
 });
 
-export async function getContainerStats() {
+export async function getContainerStats(userId) {
   try {
     const filters = JSON.stringify({
-      label: ["created_by=devsandbox"],
+      label: ["created_by=devsandbox", `owner=${userId}`],
     });
 
     const url = `${DOCKER_HOST}/containers/json?all=true&filters=${encodeURIComponent(
