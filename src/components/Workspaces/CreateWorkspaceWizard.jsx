@@ -42,8 +42,10 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
     };
 
     return (
-        <div className="space-y-6">
-            {/* Step Indicator */}
+        <div className="space-y-6 mt-3">
+            {/* ======================= */}
+            {/* --- STEPS INDICATOR --- */}
+            {/* ======================= */}
             <div className="flex items-center justify-center gap-2">
                 {[1, 2, 3].map((s) => (
                     <div
@@ -53,26 +55,28 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
                             s === step
                                 ? "bg-accent text-white"
                                 : s < step
-                                    ? "bg-success text-white"
-                                    : "bg-muted text-muted-foreground"
+                                    ? "bg-primary border border-border border-dashed text-white"
+                                    : "bg-white text-background"
                         )}
                     >
                         {s < step ? <Check className="w-4 h-4" /> : s}
                     </div>
                 ))}
             </div>
-
+            <hr className="opacity-70" />
             {/* ============================ */}
             {/* --- STEP 1: SELECT STACK --- */}
             {/* ============================ */}
             {step === 1 && (
                 <div className="space-y-4">
-                    <div>
-                        <h3 className="text-lg font-semibold mb-2">Select a Stack</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Choose your programming language and environment
-                        </p>
+
+                    <div className="flex font-mono gap-2 text-sm mb-2">
+                        <span className="size-2 rounded-full bg-accent my-auto" />
+                        <span>STEP 1 :: CHOOSE YOUR STACK</span>
                     </div>
+                    <p className="text-sm text-muted-foreground font-mono mb-10">
+                        Select a base technology stack for your workspace
+                    </p>
 
                     <div className="grid grid-cols-4 gap-4">
                         {stackTemplates.map((template) => (
@@ -80,8 +84,8 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
                                 key={template.id}
                                 onClick={() => setSelectedStack(template.id)}
                                 className={cn(
-                                    "glass-card p-4 rounded-xl text-left hover:shadow-lg transition-all",
-                                    selectedStack === template.id && "ring-2 ring-accent"
+                                    "border border-dashed border-border/80 bg-background p-4 rounded-md text-left transition-all",
+                                    selectedStack === template.id && "ring-2 ring-accent border-accent border-solid bg-primary "
                                 )}
                             >
                                 <div className="text-3xl mb-2">{template.icon}</div>
@@ -93,6 +97,10 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
                             </button>
                         ))}
                     </div>
+
+                    <p className="text-sm text-muted-foreground font-mono mt-6">
+                        $ devsandbox install <span className="text-accent">{selectedStack || "<select a stack>"}</span>
+                    </p>
                 </div>
             )}
 
@@ -101,12 +109,13 @@ export const CreateWorkspaceWizard = ({ onClose }) => {
             {/* ================================= */}
             {step === 2 && (
                 <div className="space-y-4">
-                    <div>
-                        <h3 className="text-lg font-semibold mb-2">Workspace Details</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Configure your development environment
-                        </p>
+                    <div className="flex font-mono gap-2 text-sm mb-2">
+                        <span className="size-2 rounded-full bg-accent my-auto" />
+                        <span>STEP 2 :: WORKSPACE DETAILS</span>
                     </div>
+                    <p className="text-sm text-muted-foreground mb-10">
+                        Provide a name and optional Git repository for your workspace
+                    </p>
 
                     <div className="space-y-4">
                         <div>

@@ -18,7 +18,7 @@ function CreateWorkspace() {
     return (
         <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
             <DialogTrigger asChild>
-                <Button variant="hero" className="gap-2">
+                <Button variant="default" className="gap-2">
                     <Plus className="w-4 h-4" />
                     Create Workspace
                 </Button>
@@ -26,9 +26,6 @@ function CreateWorkspace() {
             <DialogContent className="min-w-4xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>Create New Workspace</DialogTitle>
-                    <DialogDescription>
-                        Choose your stack and configure your development environment
-                    </DialogDescription>
                 </DialogHeader>
                 <CreateWorkspaceWizard onClose={() => setIsCreateOpen(false)} />
             </DialogContent>

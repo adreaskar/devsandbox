@@ -77,7 +77,7 @@ EXPOSE 3000 8080
 # 10. Start code-server with Next.js app folder
 CMD ["code-server", \
     "--bind-addr", "0.0.0.0:8080", \
-    "--auth", "password", \
+    "--auth", "none", \
     "--user-data-dir", "/home/node/.vscode-settings", \
     "--extensions-dir", "/home/node/.vscode-extensions", \
     "/home/node/app"]

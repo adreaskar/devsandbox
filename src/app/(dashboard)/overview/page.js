@@ -14,7 +14,7 @@ const Overview = async () => {
 
   return (
     <WorkspaceViewProvider>
-      <div className="space-y-8">
+      <div className="space-y-8 h-full flex flex-col">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Workspaces</h1>

@@ -10,16 +10,16 @@ function WorkspaceViewButton() {
 
     return (
 
-        <div className="flex items-center gap-1 p-1 glass-card rounded-lg">
+        <div className="flex items-center gap-2 p-1.5 bg-muted border-border border rounded-md">
             <Button
-                variant={view === "grid" ? "secondary" : "ghost"}
+                variant={view === "grid" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setView("grid")}
             >
                 <LayoutGrid className="w-4 h-4" />
             </Button>
             <Button
-                variant={view === "list" ? "secondary" : "ghost"}
+                variant={view === "list" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setView("list")}
             >

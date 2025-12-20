@@ -9,4 +9,4 @@ jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --allow
 # 2. Start code-server in the foreground
 # We use 'exec' so code-server becomes the main process
 echo "Starting code-server..."
-exec code-server --bind-addr 0.0.0.0:8080 --user-data-dir /home/coder/.vscode-settings --extensions-dir /home/coder/.vscode-extensions /home/coder/app
+exec code-server --bind-addr 0.0.0.0:8080 --user-data-dir /home/coder/.vscode-settings --auth none --extensions-dir /home/coder/.vscode-extensions /home/coder/app

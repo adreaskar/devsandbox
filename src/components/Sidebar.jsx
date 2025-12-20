@@ -29,17 +29,17 @@ const Sidebar = () => {
     return (
         <aside
             className={cn(
-                "glass-card border-r border-border/50 transition-all duration-300 flex flex-col",
+                "border-r border-border/50 transition-all duration-300 flex flex-col bg-primary",
                 collapsed ? "w-16" : "w-64"
             )}
         >
             <div className="p-4 border-b border-border/50 flex items-center justify-between">
                 {!collapsed && (
                     <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-                        <div className="p-2 rounded-lg bg-accent">
+                        <div className="p-2 rounded-md bg-primary border border-border">
                             <Terminal className="w-4 h-4 text-white" />
                         </div>
-                        <span className="text-gradient">DevSandbox</span>
+                        <span className="text-xl">DevSandbox</span>
                     </Link>
                 )}
                 <Button
@@ -64,7 +64,7 @@ const Sidebar = () => {
                     return (
                         <Link key={item.path} href={item.path}>
                             <Button
-                                variant={isActive ? "secondary" : "ghost"}
+                                variant={isActive ? "default" : "ghost"}
                                 className={cn(
                                     "w-full justify-start gap-3 mb-2",
                                     collapsed && "justify-center"

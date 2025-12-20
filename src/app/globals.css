@@ -11,13 +11,13 @@
   --color-background: var(--background);
 
   --color-ring: var(--ring);
-  --color-input: var(--input);
   --color-border: var(--border);
 
   --color-destructive: var(--destructive);
 
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
 
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
@@ -45,27 +45,27 @@
 :root {
   --radius: 0.625rem;
 
-  --background: oklch(1 0 0);
+  --background: oklch(0 0 none);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
+  --card: #101010;
+  --card-foreground: white;
 
   --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary-foreground: white;
 
-  --secondary: hsl(220 14% 90%);
+  --secondary: hsl(0, 0%, 96%);
   --secondary-foreground: hsl(220 15% 10%);
 
-  --muted: hsl(220 14% 90%);
-  --muted-foreground: oklch(0.552 0.016 285.938);
+  --muted: #101010;
+  --muted-foreground: oklch(0.64 0 none);
 
-  --accent: #ff9900;
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  --accent: #ee6018;
+  --accent-light: #ff9966;
+  --accent-foreground: white;
 
   --destructive: oklch(0.577 0.245 27.325);
 
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
+  --border: #494949;
   --ring: oklch(0.705 0.015 286.067);
 
   --success: #5cc181;
@@ -75,7 +75,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 text-primary-foreground;
   }
   body {
     @apply bg-background antialiased;
@@ -86,6 +86,14 @@
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
+}
+
+.cross {
+  background-color: var(--muted);
+  background-image: url("/img/bg-lines.png");
+  background-repeat: repeat;
+  background-size: 40px 40px;
+  background-position: center;
 }
 
 .border-debug {

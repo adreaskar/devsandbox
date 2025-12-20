@@ -43,18 +43,18 @@ function WorkspaceCard({ workspace }) {
     };
 
     return (
-        <Card className="glass-card hover:shadow-lg transition-all duration-300 group">
+        <Card className="rounded-md bg-primary border-border/50">
             <CardHeader>
                 <div className="flex items-start justify-between">
                     <CardTitle className="text-lg font-bold">{name}</CardTitle>
                     <StatusBadge status={container.status} />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{description}</p>
+                <p className="text-xs font-mono text-muted-foreground mt-1">{description}</p>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
                     {/* Resource Usage */}
-                    <div className="grid grid-cols-3 gap-3 text-sm">
+                    {/* <div className="grid grid-cols-3 gap-3 text-sm">
                         <div className="flex items-center gap-2">
                             <Cpu className="w-4 h-4 text-muted-foreground" />
                             <span className="text-muted-foreground">CPU:</span>
@@ -70,43 +70,32 @@ function WorkspaceCard({ workspace }) {
                             <span className="text-muted-foreground">Disk:</span>
                             <span className="font-medium">{workspace.disk}%</span>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <hr />
+                    <hr className="opacity-60" />
 
                     {/* Base technologies used */}
-                    <div className="text-sm text-muted-foreground">
-                        Base technologies: <span className="font-medium">{workspace.technologies}</span>
+                    <div className="text-sm font-mono text-muted-foreground">
+                        $ Base technologies: <span className="font-medium">{workspace.technologies}</span>
                     </div>
 
                     {/* Available URLs */}
                     <div className="space-y-1">
                         {container.status === "running" && container.urls ? (
-                            <div className="flex flex-col">
-                                <p className="text-sm text-muted-foreground ">Access App:</p>
-                                <div className="flex flex-wrap gap-2 mt-1">
-                                    <Link
-                                        href={container.urls[0]}
-                                        target="_blank"
-                                        className="text-sm text-accent hover:underline break-all"
-                                    >
-                                        {container.urls[0]}
-                                    </Link>
-                                </div>
+                            <div className="font-mono">
+                                <p className="inline text-sm text-muted-foreground mr-1">$ Access App:</p>
+                                <Link
+                                    href={container.urls[0]}
+                                    target="_blank"
+                                    className="text-sm text-accent hover:underline break-all"
+                                >
+                                    {container.urls[0]}
+                                </Link>
+
                             </div>
                         ) : (
-                            <div className="flex flex-col">
-                                <p className="text-sm text-muted-foreground ">Start workspace to access:</p>
-                                <div className="flex flex-wrap gap-2 mt-1">
-                                    <Link
-                                        href={container.urls[0]}
-                                        target="_blank"
-                                        className="text-sm text-black pointer-events-none hover:underline break-all"
-                                        disabled
-                                    >
-                                        {container.urls[0]}
-                                    </Link>
-                                </div>
+                            <div className="font-mono">
+                                <p className="inline text-sm text-muted-foreground mr-1">$ Start workspace to access the app</p>
                             </div>
                         )}
                     </div>
@@ -121,7 +110,7 @@ function WorkspaceCard({ workspace }) {
                                 </Button>
                                 <Link href={container.urls?.[1]} className="flex-1" target="_blank">
                                     <Button size="sm" variant="secondary" className="w-full">
-                                        <SquareTerminal className="w-4 h-4 mr-1" />
+                                        <SquareTerminal color="var(--background)" className="w-4 h-4 mr-1" />
                                         Open IDE
                                     </Button>
                                 </Link>
@@ -133,7 +122,7 @@ function WorkspaceCard({ workspace }) {
                                     Start
                                 </Button>
                                 <Button size="sm" variant="secondary" className="flex-1" onClick={handleDelete} disabled={isPending}>
-                                    {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash className="w-4 h-4 mr-1" />}
+                                    {isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash color="var(--background)" className="w-4 h-4 mr-1" />}
                                     Delete
                                 </Button>
                             </>
@@ -141,7 +130,7 @@ function WorkspaceCard({ workspace }) {
                     </div>
                 </div>
             </CardContent>
-        </Card>
+        </Card >
     );
 };
 

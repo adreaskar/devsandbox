@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { getContainerStats } from '@/actions/getContainerStats';
+import Window from './Window';
 
 export default function StatsGrid({ refreshKey }) {
     const [stats, setStats] = useState({ total: 0, running: 0, pending: 0, stopped: 0 });
@@ -38,21 +39,19 @@ export default function StatsGrid({ refreshKey }) {
     }, []);
 
     return (
-        <div className="grid grid-cols-4 gap-4">
-            <StatCard label="Total" value={stats.total} />
-            <StatCard label="Running" value={stats.running} color="text-green-600" />
-            <StatCard label="Pending / Stuck" value={stats.pending} color="text-orange-500" />
-            <StatCard label="Stopped" value={stats.stopped} color="text-gray-500" />
-        </div>
-    );
-}
-
-function StatCard({ label, value, color = "text-black" }) {
-
-    return (
-        <div className="glass-card p-6 rounded-xl">
-            <p className="text-sm text-muted-foreground mb-1">{label}</p>
-            <p className={`text-3xl font-bold ${color}`}>{value}</p>
-        </div>
+        <div className="grid grid-cols-4 gap-4 border-b border-border/50 pb-8">
+            <Window title="Total">
+                <p className="text-3xl font-bold text-primary-foreground">{stats.total}</p>
+            </Window>
+            <Window title="Running">
+                <p className="text-3xl font-bold text-primary-foreground">{stats.running}</p>
+            </Window>
+            <Window title="Pending / Stuck">
+                <p className="text-3xl font-bold text-primary-foreground">{stats.pending}</p>
+            </Window>
+            <Window title="Stopped">
+                <p className="text-3xl font-bold text-gray-500">{stats.stopped}</p>
+            </Window>
+        </div >
     );
 }
