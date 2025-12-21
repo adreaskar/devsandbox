@@ -9,7 +9,7 @@ export const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold text-xl">
           <Image
-            src="/img/logo-muted.png"
+            src="/img/logomuted.png"
             alt="DevSandbox Logo"
             width={49}
             height={49}

@@ -187,7 +187,7 @@ const Home = () => {
 
             <div className="flex text-xs items-end justify-end md:text-sm font-mono text-muted-foreground">
               <Image
-                src="/img/logo-negative.png"
+                src="/img/logonegative.png"
                 alt="DevSandbox Logo"
                 width={45}
                 height={45}

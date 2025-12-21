@@ -50,22 +50,35 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="border-dashed border-border border w-full max-w-md space-y-8 bg-muted p-10 rounded-md">
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            {isLogin ? "Welcome Back" : "Create an Account"}
-          </h2>
-          <p className="mt-2 text-sm font-mono text-muted-foreground">
+    <div className="flex flex-col gap-2 md:gap-20 min-h-screen items-center px-6 py-12 md:flex-row lg:px-24 xl:px-40 2xl:px-72">
+      <div className="w-full">
+        <hr className="pb-3 opacity-70" />
+
+        <div className="flex font-mono gap-2 text-sm mb-5">
+          <span className="size-2 rounded-full bg-accent my-auto" />
+          <span>GIVE US YOUR DATA</span>
+        </div>
+
+        <h1 className="text-3xl xl:text-7xl text-left">
+          {isLogin ? "Welcome back :: user" : "Not a member yet?"}
+        </h1>
+
+        <div className="flex mt-3 md:mt-10 mb-10 md:mb-5">
+          <p className="font-mono text-md md:text-xl text-muted-foreground max-w-2xl ">
             {isLogin
-              ? "Sign in to access your dashboard"
-              : "Get started with your free account"}
+              ? "Sign in to access your dashboard and manage your workspaces."
+              : "Join us today and start coding in isolated, cloud-based environments."}
           </p>
         </div>
 
+        <p className="hidden md:block text-sm font-mono text-muted-foreground/50 mb-10">
+          $ npx create-devsandbox@latest
+        </p>
+      </div>
+
+      <div className="border-dashed border border-border w-full max-w-md space-y-8 bg-muted py-7 px-5 rounded-md">
         {/* Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Error Message */}
           {error && (
             <div className="text-center cross p-4 text-sm text-accent font-mono font-bold border-dashed border ">

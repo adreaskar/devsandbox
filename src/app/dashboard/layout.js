@@ -7,8 +7,10 @@ export default function DashboardLayout({ children }) {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto bg-muted">
-        <div className="container py-8 h-full">{children}</div>
+      <main className="flex-1 bg-muted">
+        <div className="container py-8 max-h-dvh overflow-y-hidden">
+          {children}
+        </div>
       </main>
     </div>
   );
