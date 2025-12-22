@@ -2,6 +2,7 @@
 
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
 import WorkspaceCard from "@/components/Workspaces/WorkspaceCard";
 import { WorkspaceViewContext } from "@/context/WorkspaceView";
 
@@ -26,16 +27,20 @@ function WorkspaceGrid({ workspaces }) {
 
   if (!workspaces || workspaces.length === 0) {
     return (
-      <div className=" text-center py-10 grow flex flex-col justify-center rounded-md cross">
-        <p className="font-mono text-muted-foreground">
-          No workspaces found. Create one to get started!
-        </p>
+      <div className=" text-center py-10 flex-1 flex flex-col justify-center rounded-md cross">
+        <Search
+          className="w-10 h-10 mx-auto mb-6"
+          color="var(--muted-foreground)"
+        />
+        <h3 className="text-lg mb-2 text-muted-foreground font-mono">
+          No <span className="text-white/80">$WORKSPACES</span> found
+        </h3>
       </div>
     );
   }
 
   return (
-    <div className="cross p-5 rounded-md border-debug grow overflow-y-scroll">
+    <div className="cross p-5 rounded-md flex-1 overflow-y-auto min-h-0">
       <div
         className={
           view === "grid"

@@ -1,7 +1,7 @@
 import WorkspaceViewButton from "@/components/Workspaces/WorkspaceViewButton";
 import WorkspaceGrid from "@/components/Workspaces/WorkspaceGrid";
-import CreateWorkspace from "@/components/Workspaces/CreateWorkspace";
-import StatsGrid from "@/components/StatsGrid";
+import CreateWorkspaceButton from "@/components/Workspaces/CreateWorkspaceButton";
+import StatsGrid from "@/components/Workspaces/StatsGrid";
 import { WorkspaceViewProvider } from "@/context/WorkspaceView";
 import { getUserWorkspaces } from "@/actions/getWorkspaces";
 import { auth } from "@/auth";
@@ -9,24 +9,25 @@ import { auth } from "@/auth";
 const Overview = async () => {
   const session = await auth();
   const userId = session?.user?.id;
+  const userName = session?.user?.username;
 
   const workspaces = await getUserWorkspaces(userId);
 
   return (
     <WorkspaceViewProvider>
-      <div className="space-y-8 h-full flex flex-col">
+      <div className="h-full flex flex-col min-h-0 gap-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Workspaces</h1>
-            <p className="text-muted-foreground font-mono mt-1">
-              Manage your development environments
+            <p className=" text-xl font-mono font-medium">
+              <span className="text-accent">{userName}</span>
+              <span className="text-muted-foreground">@devsandbox</span>:
+              <span className="text-muted-foreground">~/workspaces</span>$
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <WorkspaceViewButton />
-
-            <CreateWorkspace userId={userId} />
+            <CreateWorkspaceButton userId={userId} />
           </div>
         </div>
 

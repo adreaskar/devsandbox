@@ -117,7 +117,7 @@ const Sidebar = () => {
               <Button
                 variant={isActive ? "outline" : "ghost"}
                 className={cn(
-                  "w-full justify-start gap-3 mb-2",
+                  "w-full justify-start gap-3 ",
                   collapsed && "justify-center"
                 )}
               >
