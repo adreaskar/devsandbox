@@ -1,4 +1,4 @@
-FROM node:20-slim
+FROM node:24.12.0-slim
 
 # 1. Install git AND curl (curl is needed for code-server install)
 # We do this as root before switching users
@@ -36,33 +36,15 @@ RUN create-next-app app \
 # 6. Install VS Code Extensions
 # We run this BEFORE setting the final WORKDIR so it installs globally for the user
 RUN mkdir -p /home/node/.vscode-extensions \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension daniel-duc.daniel-material-palenight-theme \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension PKief.material-icon-theme \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension formulahendry.auto-rename-tag \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension dsznajder.es7-react-js-snippets \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension esbenp.prettier-vscode \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension Prisma.prisma \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension YoavBls.pretty-ts-errors \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension bradlc.vscode-tailwindcss \
-    && code-server \
-    --extensions-dir /home/node/.vscode-extensions \
-    --install-extension alfredbirk.tailwind-documentation 
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension daniel-duc.daniel-material-palenight-theme \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension PKief.material-icon-theme \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension formulahendry.auto-rename-tag \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension dsznajder.es7-react-js-snippets \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension esbenp.prettier-vscode \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension Prisma.prisma \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension YoavBls.pretty-ts-errors \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension bradlc.vscode-tailwindcss \
+    && code-server --extensions-dir /home/node/.vscode-extensions --install-extension alfredbirk.tailwind-documentation 
 
 # 7. Copy VS Code Settings
 RUN mkdir -p /home/node/.vscode-settings/User

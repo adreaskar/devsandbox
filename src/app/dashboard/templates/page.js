@@ -14,6 +14,9 @@ const Templates = async () => {
 
   const templates = await getTemplates();
   const activeTemplates = await getActiveTemplates();
+  const popularTemplates = templates.filter(
+    (template) => template.popularityScore >= 20
+  );
 
   return (
     <TemplateSearchProvider>
@@ -46,7 +49,9 @@ const Templates = async () => {
             </p>
           </Window>
           <Window title="Popular" className="border-border/50 border-solid">
-            <p className="text-3xl font-bold text-primary-foreground">12</p>
+            <p className="text-3xl font-bold text-primary-foreground">
+              {popularTemplates.length}
+            </p>
           </Window>
           <Window title="Downloads" className="border-border/50 border-solid">
             <p className="text-3xl font-bold text-primary-foreground">2.4k</p>

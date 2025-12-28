@@ -1,0 +1,81 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorCustomizations": {
+    "activityBarBadge.background": "#FFA000",
+    "activityBar.activeBorder": "#FFA000",
+    "list.activeSelectionForeground": "#FFA000",
+    "list.inactiveSelectionForeground": "#FFA000",
+    "list.highlightForeground": "#FFA000",
+    "scrollbarSlider.activeBackground": "#FFA000",
+    "editorSuggestWidget.highlightForeground": "#FFA000",
+    "textLink.foreground": "#FFA000",
+    "progressBar.background": "#FFA000",
+    "pickerGroup.foreground": "#FFA000",
+    "tab.activeBorder": "#FFA000",
+    "notificationLink.foreground": "#FFA000",
+    "editorWidget.resizeBorder": "#FFA000",
+    "editorWidget.border": "#FFA000",
+    "settings.modifiedItemIndicator": "#FFA000",
+    "settings.headerForeground": "#FFA000",
+    "panelTitle.activeBorder": "#FFA000",
+    "breadcrumb.activeSelectionForeground": "#FFA000",
+    "menu.selectionForeground": "#FFA000",
+    "menubar.selectionForeground": "#FFA000",
+    "editor.findMatchBorder": "#FFA000",
+    "selection.background": "#FFA00040",
+    "statusBarItem.remoteBackground": "#FFA000"
+  },
+  "workbench.startupEditor": "None",
+
+  "editor.fontSize": 15,
+  "editor.fontFamily": "Fira Code",
+  "editor.lineHeight": 0,
+  "editor.fontLigatures": true,
+  "editor.linkedEditing": true,
+  "editor.suggestSelection": "first",
+  "editor.inlineSuggest.enabled": true,
+  "editor.guides.bracketPairs": "active",
+
+  "explorer.decorations.badges": false,
+
+  "git.inputValidationSubjectLength": 72,
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "update.mode": "manual",
+  "explorer.confirmDelete": false,
+
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.associations": {
+    "*.js": "javascriptreact",
+    "*.css": "css"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "workbench.editor.empty.hint": "hidden",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "prisma.showPrismaDataPlatformNotification": false,
+  "git.confirmSync": false,
+  "workbench.colorTheme": "Material Palenight Theme"
+}

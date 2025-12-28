@@ -22,7 +22,7 @@ function TemplateCard({ template, isPopular }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="cursor-pointer relative overflow-hidden border-border/50 ">
+        <Card className="cursor-pointer rounded-md relative overflow-hidden border-border/50 ">
           {isPopular && (
             <div className="absolute top-3 right-3">
               <Badge variant="warning" className="gap-1">
