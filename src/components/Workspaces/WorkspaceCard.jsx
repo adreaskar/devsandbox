@@ -100,36 +100,31 @@ function WorkspaceCard({ workspace }) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 pt-2">
+          <div className="grid grid-cols-2 items-center gap-2 pt-2">
             {container.status === "running" ? (
               <>
+                <Link href={container.urls?.[1]} target="_blank">
+                  <Button size="sm" variant="default" className="w-full">
+                    <SquareTerminal color="white" className="w-4 h-4" />
+                    Open IDE
+                  </Button>
+                </Link>
                 <Button
                   size="sm"
-                  variant="default"
-                  className="flex-1"
+                  variant="dashed"
                   onClick={() => handleControl("stop")}
                   disabled={isPending}
                 >
                   {isPending ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <Square className="w-4 h-4" />
+                    <Square
+                      className="w-4 h-4"
+                      color="var(--muted-foreground)"
+                    />
                   )}
                   Stop
                 </Button>
-                <Link
-                  href={container.urls?.[1]}
-                  className="flex-1"
-                  target="_blank"
-                >
-                  <Button size="sm" variant="dashed" className="w-full">
-                    <SquareTerminal
-                      color="var(--muted-foreground)"
-                      className="w-4 h-4"
-                    />
-                    Open IDE
-                  </Button>
-                </Link>
               </>
             ) : (
               <>
