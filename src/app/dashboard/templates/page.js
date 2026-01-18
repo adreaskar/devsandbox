@@ -6,16 +6,23 @@ import Window from "@/components/Window";
 import { getTemplates } from "@/actions/getTemplates";
 import { getActiveTemplates } from "@/actions/getTemplates";
 import { auth } from "@/auth";
+import dbConnect from "@/lib/mongodb";
+import User from "@/models/User";
 
 const Templates = async () => {
   const session = await auth();
   const userId = session?.user?.id;
   const userName = session?.user?.username;
 
+  // Get user details to check admin status
+  await dbConnect();
+  const user = await User.findById(userId).lean();
+  const isAdmin = user?.isAdmin || false;
+
   const templates = await getTemplates();
   const activeTemplates = await getActiveTemplates();
   const popularTemplates = templates.filter(
-    (template) => template.popularityScore >= 20
+    (template) => template.popularityScore >= 20,
   );
 
   return (
@@ -32,7 +39,7 @@ const Templates = async () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <CreateTemplateButton userId={userId} />
+            {isAdmin && <CreateTemplateButton userId={userId} />}
           </div>
         </div>
 

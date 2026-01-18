@@ -15,9 +15,10 @@ const UserSchema = new mongoose.Schema(
       trim: true,
     },
     password: { type: String, required: true },
+    isAdmin: { type: Boolean, default: false },
     workspaces: [{ type: mongoose.Schema.Types.ObjectId, ref: "Workspace" }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
