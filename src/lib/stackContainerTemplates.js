@@ -1,9 +1,16 @@
-function getContainerTemplate(stack, hostPort, idePort, userId) {
+function getContainerTemplate(
+  stack,
+  hostPort,
+  idePort,
+  userId,
+  gitRepoUrl = "",
+) {
   switch (stack) {
     // Node.js + React template
     case "nodereact":
       return {
         User: "node",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
         ExposedPorts: {
           "5173/tcp": {},
           "3000/tcp": {},
@@ -37,6 +44,7 @@ function getContainerTemplate(stack, hostPort, idePort, userId) {
     case "nextjs":
       return {
         User: "node",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
         ExposedPorts: {
           "3000/tcp": {},
         },
@@ -66,6 +74,7 @@ function getContainerTemplate(stack, hostPort, idePort, userId) {
     case "django":
       return {
         User: "python_user",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
         ExposedPorts: {
           "8000/tcp": {},
         },
@@ -95,6 +104,7 @@ function getContainerTemplate(stack, hostPort, idePort, userId) {
     case "python":
       return {
         User: "coder",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
         ExposedPorts: { "8888/tcp": {} },
         Labels: {
           created_by: "devsandbox",

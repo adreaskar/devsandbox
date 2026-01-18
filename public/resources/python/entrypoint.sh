@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Clone GitHub repo if GIT_REPO_URL is provided
+if [ -n "$GIT_REPO_URL" ]; then
+  echo "Cloning repository: $GIT_REPO_URL"
+  cd /home/coder/app
+  git clone "$GIT_REPO_URL" github-repo 2>/dev/null || echo "Failed to clone repository, continuing with default setup..."
+fi
+
 # 1. Start Jupyter Lab in the background (&)
 # We use --NotebookApp.token='' to disable the token login for easier access
 # (Since code-server already protects the container with a password)

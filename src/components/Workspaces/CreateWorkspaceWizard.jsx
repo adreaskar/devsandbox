@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 import { createWorkspace } from "@/actions/createWorkspace";
+import { validateGitRepo } from "@/actions/validateGitRepo";
 
 export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
   const [step, setStep] = useState(1);
@@ -22,7 +23,17 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
       .find((s) => s.stackId === selectedStack)
       ?.technologies?.join(", ") || "";
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
+    // Validate GitHub repo if provided
+    if (gitRepoName && gitRepoName.trim() !== "") {
+      const validation = await validateGitRepo(gitRepoName);
+
+      if (!validation.success) {
+        toast.error(validation.error);
+        return;
+      }
+    }
+
     const launchPromise = async () => {
       const result = await createWorkspace(
         userId,
@@ -130,7 +141,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
             <span>STEP 2 :: WORKSPACE DETAILS</span>
           </div>
           <p className="text-sm text-muted-foreground mb-10">
-            Provide a name and optional Git repository for your workspace
+            Provide a name and optional GitHub repository for your workspace
           </p>
 
           <div className="space-y-4">

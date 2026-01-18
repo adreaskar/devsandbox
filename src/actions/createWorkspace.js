@@ -22,7 +22,7 @@ export async function createWorkspace(
   workspaceName,
   description,
   technologies,
-  gitRepoName
+  gitRepoName,
 ) {
   // Unique names based on timestamp
   const CONTAINER_NAME = `${stack}-workspace-` + Date.now();
@@ -40,7 +40,7 @@ export async function createWorkspace(
       `${DOCKER_HOST}/images/${IMAGE_NAME}/json`,
       {
         dispatcher: dockerAgent,
-      }
+      },
     );
 
     if (inspectRes.status === 200) {
@@ -90,7 +90,7 @@ export async function createWorkspace(
     ]);
 
     console.log(
-      `[DOCKER-ENVIRONMENT] -- Selected ports - App: ${appPort}, IDE: ${idePort}`
+      `[DOCKER-ENVIRONMENT] -- Selected ports - App: ${appPort}, IDE: ${idePort}`,
     );
 
     // Get container template based on stack
@@ -98,7 +98,8 @@ export async function createWorkspace(
       stack,
       appPort,
       idePort,
-      userId
+      userId,
+      gitRepoName,
     );
 
     const createRes = await undiciFetch(
@@ -111,11 +112,11 @@ export async function createWorkspace(
           Image: IMAGE_NAME,
           ...CONTAINER_TEMPLATE,
         }),
-      }
+      },
     );
 
     console.log(
-      `[DOCKER-ENVIRONMENT] -- Container will be accessible at ports: ${appPort} (App), ${idePort} (IDE)`
+      `[DOCKER-ENVIRONMENT] -- Container will be accessible at ports: ${appPort} (App), ${idePort} (IDE)`,
     );
 
     if (!createRes.ok)
@@ -124,7 +125,7 @@ export async function createWorkspace(
     const containerId = containerData.Id;
 
     console.log(
-      `[DOCKER-ENVIRONMENT] -- Container created with ID: ${containerId}`
+      `[DOCKER-ENVIRONMENT] -- Container created with ID: ${containerId}`,
     );
 
     // ===============================

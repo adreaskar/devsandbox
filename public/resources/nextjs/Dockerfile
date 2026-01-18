@@ -50,16 +50,15 @@ RUN mkdir -p /home/node/.vscode-extensions \
 RUN mkdir -p /home/node/.vscode-settings/User
 COPY --chown=node:node settings.json /home/node/.vscode-settings/User/settings.json
 
-# 8. Set Workdir
+# 8. Copy entrypoint script
+COPY --chown=node:node entrypoint.sh /home/node/entrypoint.sh
+RUN chmod +x /home/node/entrypoint.sh
+
+# 9. Set Workdir
 WORKDIR /home/node/app
 
-# 9. Expose Ports
+# 10. Expose Ports
 EXPOSE 3000 8080
 
-# 10. Start code-server with Next.js app folder
-CMD ["code-server", \
-    "--bind-addr", "0.0.0.0:8080", \
-    "--auth", "none", \
-    "--user-data-dir", "/home/node/.vscode-settings", \
-    "--extensions-dir", "/home/node/.vscode-extensions", \
-    "/home/node/app"]
+# 11. Start entrypoint script
+CMD ["/home/node/entrypoint.sh"]

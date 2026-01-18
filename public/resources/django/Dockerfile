@@ -46,19 +46,7 @@ INSTALLED_APPS += ['rest_framework', 'corsheaders']\n\
 MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')\n\
 " >> backend/settings.py
 
-# 6. Create the Entrypoint Script
-RUN echo '#!/bin/bash\n\
-# If app directory is empty, copy the template files\n\
-if [ -z "$(ls -A /home/python_user/app)" ]; then\n\
-    echo "Initializing Django Workspace..."\n\
-    cp -a /home/python_user/project_template/. /home/python_user/app/\n\
-fi\n\
-# Execute the passed command (code-server)\n\
-exec "$@"\n\
-' > /home/python_user/entrypoint.sh \
-    && chmod +x /home/python_user/entrypoint.sh
-
-# 7. Install VS Code Extensions for Python
+# 6. Install VS Code Extensions for Python
 RUN mkdir -p /home/python_user/.vscode-extensions \
     && code-server --extensions-dir /home/python_user/.vscode-extensions --install-extension ms-python.python \
     && code-server --extensions-dir /home/python_user/.vscode-extensions --install-extension ms-python.debugpy \
@@ -66,23 +54,23 @@ RUN mkdir -p /home/python_user/.vscode-extensions \
     && code-server --extensions-dir /home/python_user/.vscode-extensions --install-extension PKief.material-icon-theme \
     && code-server --extensions-dir /home/python_user/.vscode-extensions --install-extension daniel-duc.daniel-material-palenight-theme
 
-# 8. Copy VS Code Settings
+# 7. Copy VS Code Settings
 RUN mkdir -p /home/python_user/.vscode-settings/User
 COPY --chown=python_user:python_user settings.json /home/python_user/.vscode-settings/User/settings.json
 
-# 9. Final Setup
-RUN mkdir -p /home/python_user/app
-WORKDIR /home/python_user/app
+# 8. Create workspace directory and copy template
+RUN mkdir -p /home/python_user/workspace \
+    && cp -a /home/python_user/project_template/. /home/python_user/workspace/
+
+# 9. Copy entrypoint script
+COPY --chown=python_user:python_user entrypoint.sh /home/python_user/entrypoint.sh
+RUN chmod +x /home/python_user/entrypoint.sh
+
+# 10. Final Setup
+WORKDIR /home/python_user/workspace
 
 # Ports: 8080 (IDE), 8000 (Django)
 EXPOSE 8080 8000
 
-# 10. Start
-ENTRYPOINT ["/home/python_user/entrypoint.sh"]
-
-CMD ["code-server", \
-    "--bind-addr", "0.0.0.0:8080", \
-    "--auth", "none", \
-    "--user-data-dir", "/home/python_user/.vscode-settings", \
-    "--extensions-dir", "/home/python_user/.vscode-extensions", \
-    "/home/python_user/app"]
+# 11. Start entrypoint script
+CMD ["/home/python_user/entrypoint.sh"]

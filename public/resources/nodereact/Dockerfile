@@ -58,19 +58,18 @@ RUN mkdir -p /home/node/.vscode-extensions \
 RUN mkdir -p /home/node/.vscode-settings/User
 COPY --chown=node:node settings.json /home/node/.vscode-settings/User/settings.json
 
-# 8. Set Final Workdir
+# 8. Copy entrypoint script
+COPY --chown=node:node entrypoint.sh /home/node/entrypoint.sh
+RUN chmod +x /home/node/entrypoint.sh
+
+# 9. Set Final Workdir
 WORKDIR /home/node/app
 
-# 9. Expose Ports
+# 10. Expose Ports
 # 8080: Code Server
 # 5173: Vite (Default React Port)
 # 3000: Express (Standard Backend Port)
 EXPOSE 8080 5173 3000
 
-# 10. Start code-server
-CMD ["code-server", \
-    "--bind-addr", "0.0.0.0:8080", \
-    "--auth", "none", \
-    "--user-data-dir", "/home/node/.vscode-settings", \
-    "--extensions-dir", "/home/node/.vscode-extensions", \
-    "/home/node/nodereactapp"]
+# 11. Start entrypoint script
+CMD ["/home/node/entrypoint.sh"]
