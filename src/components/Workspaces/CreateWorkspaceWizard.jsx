@@ -7,19 +7,20 @@ import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import stackTemplates from "@/lib/stackTemplates";
 
 import { createWorkspace } from "@/actions/createWorkspace";
 
-export const CreateWorkspaceWizard = ({ onClose, userId }) => {
+export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
   const [step, setStep] = useState(1);
   const [selectedStack, setSelectedStack] = useState("");
   const [workspaceName, setWorkspaceName] = useState("");
   const [gitRepoName, setGitRepoName] = useState("");
   const description =
-    stackTemplates.find((s) => s.id === selectedStack)?.description || "";
+    templates.find((s) => s.stackId === selectedStack)?.description || "";
   const technologies =
-    stackTemplates.find((s) => s.id === selectedStack)?.version || "";
+    templates
+      .find((s) => s.stackId === selectedStack)
+      ?.technologies?.join(", ") || "";
 
   const handleCreate = () => {
     const launchPromise = async () => {
@@ -29,7 +30,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId }) => {
         workspaceName,
         description,
         technologies,
-        gitRepoName
+        gitRepoName,
       );
 
       if (!result.success)
@@ -65,8 +66,8 @@ export const CreateWorkspaceWizard = ({ onClose, userId }) => {
               s === step
                 ? "bg-accent text-white"
                 : s < step
-                ? "bg-primary border border-border border-dashed text-white"
-                : "bg-white text-background"
+                  ? "bg-primary border border-border border-dashed text-white"
+                  : "bg-white text-background",
             )}
           >
             {s < step ? <Check className="w-4 h-4" /> : s}
@@ -88,14 +89,14 @@ export const CreateWorkspaceWizard = ({ onClose, userId }) => {
           </p>
 
           <div className="grid grid-cols-4 gap-4">
-            {stackTemplates.map((template) => (
+            {templates.map((template) => (
               <button
-                key={template.id}
-                onClick={() => setSelectedStack(template.id)}
+                key={template.stackId}
+                onClick={() => setSelectedStack(template.stackId)}
                 className={cn(
                   "border border-dashed border-border/80 bg-background p-4 rounded-md text-left transition-all",
-                  selectedStack === template.id &&
-                    "ring-2 ring-accent border-accent border-solid bg-primary "
+                  selectedStack === template.stackId &&
+                    "ring-2 ring-accent border-accent border-solid bg-primary ",
                 )}
               >
                 <div className="text-3xl mb-2">{template.icon}</div>
@@ -104,7 +105,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId }) => {
                   {template.description}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {template.version}
+                  {template.technologies?.join(", ")}
                 </p>
               </button>
             ))}

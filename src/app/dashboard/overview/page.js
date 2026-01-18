@@ -4,6 +4,7 @@ import CreateWorkspaceButton from "@/components/Workspaces/CreateWorkspaceButton
 import StatsGrid from "@/components/Workspaces/StatsGrid";
 import { WorkspaceViewProvider } from "@/context/WorkspaceView";
 import { getUserWorkspaces } from "@/actions/getWorkspaces";
+import { getTemplates } from "@/actions/getTemplates";
 import { auth } from "@/auth";
 
 const Overview = async () => {
@@ -12,6 +13,7 @@ const Overview = async () => {
   const userName = session?.user?.username;
 
   const workspaces = await getUserWorkspaces(userId);
+  const templates = await getTemplates();
 
   return (
     <WorkspaceViewProvider>
@@ -27,7 +29,7 @@ const Overview = async () => {
 
           <div className="flex items-center gap-3">
             <WorkspaceViewButton />
-            <CreateWorkspaceButton userId={userId} />
+            <CreateWorkspaceButton userId={userId} templates={templates} />
           </div>
         </div>
 
