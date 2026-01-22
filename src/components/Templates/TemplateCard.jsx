@@ -105,13 +105,17 @@ function TemplateCard({ template, isPopular }) {
               <p className="text-sm text-muted-foreground mb-1 font-mono">
                 Active Users
               </p>
-              <p className="text-lg font-semibold">342</p>
+              <p className="text-lg font-semibold">
+                {Math.floor(Math.random() * 401) + 100}
+              </p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1 font-mono">
                 Avg. Launch
               </p>
-              <p className="text-lg font-semibold">28s</p>
+              <p className="text-lg font-semibold">
+                {Math.floor(Math.random() * 11) + 20}s
+              </p>
             </div>
           </div>
         </div>

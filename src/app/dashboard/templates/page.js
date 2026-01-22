@@ -1,4 +1,3 @@
-import stackTemplates from "@/lib/stackTemplates";
 import { TemplateSearchProvider } from "@/context/TemplateSearch";
 import TemplatesTabs from "@/components/Templates/TemplatesTabs";
 import CreateTemplateButton from "@/components/Templates/CreateTemplateButton";
