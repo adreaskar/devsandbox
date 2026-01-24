@@ -44,24 +44,26 @@ export default function StatsGrid({ refreshKey, userId }) {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
       <Window title="Total" className="border-border/50 border-solid">
-        <p className="text-3xl font-bold text-primary-foreground">
+        <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
           {stats.total}
         </p>
       </Window>
       <Window title="Running" className="border-border/50 border-solid">
-        <p className="text-3xl font-bold text-primary-foreground">
+        <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
           {stats.running}
         </p>
       </Window>
       <Window title="Pending / Stuck" className="border-border/50 border-solid">
-        <p className="text-3xl font-bold text-primary-foreground">
+        <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
           {stats.pending}
         </p>
       </Window>
       <Window title="Stopped" className="border-border/50 border-solid">
-        <p className="text-3xl font-bold text-gray-500">{stats.stopped}</p>
+        <p className="text-2xl md:text-3xl font-bold text-gray-500">
+          {stats.stopped}
+        </p>
       </Window>
     </div>
   );

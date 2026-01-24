@@ -9,7 +9,7 @@ function WorkspaceViewButton() {
   const { view, setView } = useContext(WorkspaceViewContext);
 
   return (
-    <div className="flex items-center gap-2 p-1 bg-muted border-border border rounded-md">
+    <div className="hidden md:flex items-center gap-2 p-1 bg-muted border-border border rounded-md">
       <Button
         variant={view === "grid" ? "default" : "ghost"}
         size="sm"

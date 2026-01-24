@@ -45,17 +45,17 @@ const Overview = async () => {
   // Regular User View
   return (
     <WorkspaceViewProvider>
-      <div className="h-full flex flex-col min-h-0 gap-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className=" text-xl font-mono font-medium">
+      <div className="h-full flex flex-col min-h-0 gap-4 md:gap-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="overflow-hidden">
+            <p className="text-base sm:text-xl font-mono font-medium truncate">
               <span className="text-accent">{userName}</span>
               <span className="text-muted-foreground">@devsandbox</span>:
               <span className="text-muted-foreground">~/workspaces</span>$
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <WorkspaceViewButton />
             <CreateWorkspaceButton userId={userId} templates={templates} />
           </div>

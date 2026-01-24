@@ -64,7 +64,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
   };
 
   return (
-    <div className="space-y-6 mt-3">
+    <div className="space-y-4 md:space-y-6 mt-2 md:mt-3">
       {/* ======================= */}
       {/* --- STEPS INDICATOR --- */}
       {/* ======================= */}
@@ -73,7 +73,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
           <div
             key={s}
             className={cn(
-              "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all",
+              "w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all",
               s === step
                 ? "bg-accent text-white"
                 : s < step
@@ -81,7 +81,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
                   : "bg-white text-background",
             )}
           >
-            {s < step ? <Check className="w-4 h-4" /> : s}
+            {s < step ? <Check className="w-3 h-3 md:w-4 md:h-4" /> : s}
           </div>
         ))}
       </div>
@@ -90,28 +90,30 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
       {/* --- STEP 1: SELECT STACK --- */}
       {/* ============================ */}
       {step === 1 && (
-        <div className="space-y-4">
-          <div className="flex font-mono gap-2 text-sm mb-2">
+        <div className="space-y-3 md:space-y-4">
+          <div className="flex font-mono gap-2 text-xs md:text-sm mb-1 md:mb-2">
             <span className="size-2 rounded-full bg-accent my-auto" />
             <span>STEP 1 :: CHOOSE YOUR STACK</span>
           </div>
-          <p className="text-sm text-muted-foreground font-mono mb-10">
+          <p className="text-xs md:text-sm text-muted-foreground font-mono mb-4 md:mb-10">
             Select a base technology stack for your workspace
           </p>
 
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {templates.map((template) => (
               <button
                 key={template.stackId}
                 onClick={() => setSelectedStack(template.stackId)}
                 className={cn(
-                  "border border-dashed border-border/80 bg-background p-4 rounded-md text-left transition-all",
+                  "border border-dashed border-border/80 bg-background p-3 md:p-4 rounded-md text-left transition-all",
                   selectedStack === template.stackId &&
                     "ring-2 ring-accent border-accent border-solid bg-primary ",
                 )}
               >
-                <div className="text-3xl mb-2">{template.icon}</div>
-                <h4 className="font-semibold mb-1">{template.name}</h4>
+                <div className="text-2xl md:text-3xl mb-2">{template.icon}</div>
+                <h4 className="font-semibold mb-1 text-sm md:text-base">
+                  {template.name}
+                </h4>
                 <p className="text-xs text-muted-foreground mb-2">
                   {template.description}
                 </p>
@@ -122,7 +124,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground font-mono mt-6">
+          <p className="text-xs md:text-sm text-muted-foreground font-mono mt-4 md:mt-6 break-all">
             $ devsandbox install{" "}
             <span className="text-accent">
               {selectedStack || "<select a stack>"}
@@ -135,12 +137,12 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
       {/* --- STEP 2: WORKSPACE DETAILS --- */}
       {/* ================================= */}
       {step === 2 && (
-        <div className="space-y-4">
-          <div className="flex font-mono gap-2 text-sm mb-2">
+        <div className="space-y-3 md:space-y-4">
+          <div className="flex font-mono gap-2 text-xs md:text-sm mb-1 md:mb-2">
             <span className="size-2 rounded-full bg-accent my-auto" />
             <span>STEP 2 :: WORKSPACE DETAILS</span>
           </div>
-          <p className="text-sm text-muted-foreground mb-10">
+          <p className="text-xs md:text-sm text-muted-foreground mb-4 md:mb-10">
             Provide a name and optional GitHub repository for your workspace
           </p>
 
@@ -173,10 +175,11 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
       )}
 
       {/* Navigation Buttons */}
-      <div className="flex items-center justify-between pt-4">
+      <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0 pt-3 md:pt-4">
         <Button
           variant="ghost"
           onClick={() => (step > 1 ? setStep(step - 1) : onClose())}
+          className="w-full sm:w-auto"
         >
           {step > 1 ? "Back" : "Cancel"}
         </Button>
@@ -186,6 +189,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
             variant="default"
             onClick={() => setStep(step + 1)}
             disabled={step === 1 && !selectedStack}
+            className="w-full sm:w-auto"
           >
             Continue
           </Button>
@@ -194,6 +198,7 @@ export const CreateWorkspaceWizard = ({ onClose, userId, templates = [] }) => {
             variant="default"
             onClick={handleCreate}
             disabled={!workspaceName}
+            className="w-full sm:w-auto"
           >
             Create Workspace
           </Button>

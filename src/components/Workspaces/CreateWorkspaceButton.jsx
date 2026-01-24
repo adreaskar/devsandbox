@@ -17,12 +17,12 @@ function CreateWorkspaceButton({ userId, templates = [] }) {
   return (
     <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
       <DialogTrigger asChild>
-        <Button variant="default" className="gap-2 py-5">
+        <Button variant="default" className="gap-2 py-3 md:py-5">
           <Plus className="w-4 h-4" />
           Create Workspace
         </Button>
       </DialogTrigger>
-      <DialogContent className="min-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[calc(100%-1rem)] sm:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create New Workspace</DialogTitle>
         </DialogHeader>

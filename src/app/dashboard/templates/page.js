@@ -30,7 +30,7 @@ const Templates = async () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className=" text-xl font-mono font-medium">
+            <p className="text-base sm:text-xl font-mono font-medium truncate">
               <span className="text-accent">{userName}</span>
               <span className="text-muted-foreground">@devsandbox</span>:
               <span className="text-muted-foreground">~/templates</span>$
@@ -43,24 +43,26 @@ const Templates = async () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <Window title="Total" className="border-border/50 border-solid">
-            <p className="text-3xl font-bold text-primary-foreground">
+            <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
               {templates.length.toString()}
             </p>
           </Window>
           <Window title="Active" className="border-border/50 border-solid">
-            <p className="text-3xl font-bold text-primary-foreground">
+            <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
               {activeTemplates}
             </p>
           </Window>
           <Window title="Popular" className="border-border/50 border-solid">
-            <p className="text-3xl font-bold text-primary-foreground">
+            <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
               {popularTemplates.length}
             </p>
           </Window>
           <Window title="Downloads" className="border-border/50 border-solid">
-            <p className="text-3xl font-bold text-primary-foreground">2.4k</p>
+            <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
+              2.4k
+            </p>
           </Window>
         </div>
 
