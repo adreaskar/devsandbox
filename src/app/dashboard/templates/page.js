@@ -28,7 +28,7 @@ const Templates = async () => {
     <TemplateSearchProvider>
       <div className="h-full flex flex-col min-h-0 gap-8">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <p className="text-base sm:text-xl font-mono font-medium truncate">
               <span className="text-accent">{userName}</span>
@@ -37,7 +37,7 @@ const Templates = async () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center shrink-0">
             {isAdmin && <CreateTemplateButton userId={userId} />}
           </div>
         </div>

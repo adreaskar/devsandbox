@@ -56,7 +56,7 @@ function TemplateCard({ template, isPopular }) {
         </Card>
       </DialogTrigger>
 
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-[calc(100%-1rem)] sm:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="text-4xl mb-4">{template.icon}</div>
           <DialogTitle className="text-2xl">{template.name}</DialogTitle>
