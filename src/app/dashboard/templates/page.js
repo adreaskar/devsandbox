@@ -67,7 +67,7 @@ const Templates = async () => {
         </div>
 
         {/* Templates Tabs */}
-        <TemplatesTabs templates={templates} />
+        <TemplatesTabs templates={templates} isAdmin={isAdmin} />
       </div>
     </TemplateSearchProvider>
   );

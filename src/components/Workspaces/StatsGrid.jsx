@@ -55,7 +55,7 @@ export default function StatsGrid({ refreshKey, userId }) {
           {stats.running}
         </p>
       </Window>
-      <Window title="Pending / Stuck" className="border-border/50 border-solid">
+      <Window title="Pending" className="border-border/50 border-solid">
         <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
           {stats.pending}
         </p>

@@ -7,17 +7,17 @@ import { Search } from "lucide-react";
 import { TemplateSearchContext } from "@/context/TemplateSearch";
 import TemplateSearch from "./TemplateSearch";
 
-function TemplatesTabs({ templates }) {
+function TemplatesTabs({ templates, isAdmin = false }) {
   const { searchQuery } = useContext(TemplateSearchContext);
 
   const filteredTemplates = templates.filter(
     (template) =>
       template.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      template.description.toLowerCase().includes(searchQuery.toLowerCase())
+      template.description.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const popularTemplates = templates.filter(
-    (template) => template.popularityScore >= 20
+    (template) => template.popularityScore >= 20,
   );
 
   if (!templates || templates.length === 0) {
@@ -50,7 +50,11 @@ function TemplatesTabs({ templates }) {
           <TabsContent value="all" className="space-y-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredTemplates.map((template) => (
-                <TemplateCard key={template.stackId} template={template} />
+                <TemplateCard
+                  key={template.stackId}
+                  template={template}
+                  isAdmin={isAdmin}
+                />
               ))}
             </div>
           </TabsContent>
@@ -62,6 +66,7 @@ function TemplatesTabs({ templates }) {
                   key={template.stackId}
                   template={template}
                   isPopular
+                  isAdmin={isAdmin}
                 />
               ))}
             </div>

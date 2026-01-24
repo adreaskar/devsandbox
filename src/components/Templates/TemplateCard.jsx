@@ -1,6 +1,7 @@
 "use client";
 
-import { CheckCircle2, Star } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle2, Star, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -17,10 +18,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { deleteTemplate } from "@/actions/deleteTemplate";
 
-function TemplateCard({ template, isPopular }) {
+function TemplateCard({ template, isPopular, isAdmin = false }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    if (
+      !confirm(
+        `Are you sure you want to delete "${template.name}"? This action cannot be undone.`,
+      )
+    ) {
+      return;
+    }
+
+    setIsDeleting(true);
+
+    const deletePromise = deleteTemplate(template.stackId);
+
+    toast.promise(deletePromise, {
+      loading: "Deleting template...",
+      success: (result) => {
+        if (result.success) {
+          setIsOpen(false);
+          setTimeout(() => window.location.reload(), 1000);
+          return `Template "${result.deletedTemplate.name}" deleted successfully!`;
+        } else {
+          setIsDeleting(false);
+          throw new Error(result.error);
+        }
+      },
+      error: (err) => {
+        setIsDeleting(false);
+        return err.message || "Failed to delete template";
+      },
+    });
+  };
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Card className="cursor-pointer rounded-md relative overflow-hidden border-border/50 ">
           {isPopular && (
@@ -118,6 +156,20 @@ function TemplateCard({ template, isPopular }) {
               </p>
             </div>
           </div>
+
+          {isAdmin && (
+            <div className="pt-4 border-t flex justify-end">
+              <Button
+                variant="default"
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="gap-2"
+              >
+                <Trash2 className="w-4 h-4" />
+                {isDeleting ? "Deleting..." : "Delete Template"}
+              </Button>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

@@ -129,8 +129,31 @@ function getContainerTemplate(
         },
       };
 
+    // Generic template for custom stacks
     default:
-      throw new Error(`Unsupported stack: ${stack}`);
+      // For any custom template, use a generic configuration
+      // The user will be determined by the base image used
+      return {
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
+        ExposedPorts: {
+          "8080/tcp": {}, // code-server port
+        },
+        Labels: {
+          created_by: "devsandbox",
+          owner: userId,
+        },
+        HostConfig: {
+          PortBindings: {
+            "8080/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: idePort,
+              },
+            ],
+          },
+          AutoRemove: false,
+        },
+      };
   }
 }
 
