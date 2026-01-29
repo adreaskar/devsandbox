@@ -176,12 +176,12 @@ const Home = () => {
             </div>
 
             <div className="text-sm md:w-1/2 text-right self-end">
-              <p className="text-muted-foreground font-mono">
-                Design isn't just what it looks and feels like
+              <p className="text-muted-foreground font-mono leading-6">
+                Code anywhere, instantly.
                 <br />
-                Design is how it works
+                Your space, your rules.
                 <br />
-                -- <i className="text-muted-foreground">Steve Jobs</i>{" "}
+                The cloud is your IDE.
               </p>
             </div>
 
