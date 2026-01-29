@@ -129,6 +129,132 @@ function getContainerTemplate(
         },
       };
 
+    // .NET template
+    case "dotnet":
+      return {
+        User: "dotnet",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
+        ExposedPorts: {
+          "5000/tcp": {}, // ASP.NET Core HTTP
+          "5001/tcp": {}, // ASP.NET Core HTTPS
+        },
+        Labels: {
+          created_by: "devsandbox",
+          owner: userId,
+        },
+        HostConfig: {
+          PortBindings: {
+            "5000/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: hostPort,
+              },
+            ],
+            "8080/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: idePort,
+              },
+            ],
+            // Note: Port 5001 (HTTPS) is exposed internally but not bound to the host
+          },
+          AutoRemove: false,
+        },
+      };
+
+    // Go template
+    case "go":
+      return {
+        User: "gouser",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
+        ExposedPorts: {
+          "3000/tcp": {}, // Go HTTP server
+        },
+        Labels: {
+          created_by: "devsandbox",
+          owner: userId,
+        },
+        HostConfig: {
+          PortBindings: {
+            "3000/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: hostPort,
+              },
+            ],
+            "8080/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: idePort,
+              },
+            ],
+          },
+          AutoRemove: false,
+        },
+      };
+
+    // Rust template
+    case "rust":
+      return {
+        User: "rustuser",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
+        ExposedPorts: {
+          "8000/tcp": {}, // Rust HTTP server
+        },
+        Labels: {
+          created_by: "devsandbox",
+          owner: userId,
+        },
+        HostConfig: {
+          PortBindings: {
+            "8000/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: hostPort,
+              },
+            ],
+            "8080/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: idePort,
+              },
+            ],
+          },
+          AutoRemove: false,
+        },
+      };
+
+    // Java template
+    case "java":
+      return {
+        User: "javauser",
+        Env: gitRepoUrl ? [`GIT_REPO_URL=${gitRepoUrl}`] : [],
+        ExposedPorts: {
+          "8081/tcp": {}, // Java HTTP server
+        },
+        Labels: {
+          created_by: "devsandbox",
+          owner: userId,
+        },
+        HostConfig: {
+          PortBindings: {
+            "8081/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: hostPort,
+              },
+            ],
+            "8080/tcp": [
+              {
+                HostIp: "0.0.0.0",
+                HostPort: idePort,
+              },
+            ],
+          },
+          AutoRemove: false,
+        },
+      };
+
     // Generic template for custom stacks
     default:
       // For any custom template, use a generic configuration
