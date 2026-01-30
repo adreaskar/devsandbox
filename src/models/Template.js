@@ -9,14 +9,8 @@ const TemplateSchema = new mongoose.Schema(
     technologies: [String],
 
     popularityScore: { type: Number, default: 0 },
-
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: false,
-    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.models.Template ||
