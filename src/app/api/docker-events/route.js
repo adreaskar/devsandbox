@@ -13,6 +13,7 @@ export async function GET(req) {
   // 1. Setup Docker Connection (Unix Socket)
   const dockerAgent = new Agent({
     connect: { socketPath: "/var/run/docker.sock" }, // Adjust for OrbStack/Colima if needed
+    bodyTimeout: 0,
   });
 
   // 2. Start the connection to Docker's event stream
@@ -22,8 +23,7 @@ export async function GET(req) {
     {
       headers: { Accept: "application/json" },
       dispatcher: dockerAgent,
-      bodoyTimeout: 0,
-    }
+    },
   );
 
   if (!dockerRes.ok) {
