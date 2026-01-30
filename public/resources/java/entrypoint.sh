@@ -12,13 +12,14 @@ if [ -n "$GIT_REPO_URL" ]; then
     echo "Failed to clone repository, continuing with empty workspace"
   fi
 else
-  # Create a Java Hello World boilerplate if no repository is provided
-  echo "No repository provided. Creating Java Hello World boilerplate..."
   cd /home/javauser/workspace
   
-  # Create project directory
-  mkdir -p hello-world/src/main/java/com/example
-  cd hello-world
+  if [ ! -d "hello-world" ]; then
+    echo "No repository provided. Creating Java Hello World boilerplate..."
+    
+    # Create project directory
+    mkdir -p hello-world/src/main/java/com/example
+    cd hello-world
   
   # Create pom.xml for Maven
   cat > pom.xml << 'EOF'
@@ -102,15 +103,18 @@ public class Main {
     }
 }
 EOF
-  
-  echo "Java Hello World project created successfully!"
-  echo "To compile and run the application:"
-  echo "  cd hello-world"
-  echo "  mvn compile"
-  echo "  mvn exec:java -Dexec.mainClass=\"com.example.Main\""
-  echo "Or simply:"
-  echo "  javac -d target/classes src/main/java/com/example/Main.java"
-  echo "  java -cp target/classes com.example.Main"
+    
+    echo "Java Hello World project created successfully!"
+    echo "To compile and run the application:"
+    echo "  cd hello-world"
+    echo "  mvn compile"
+    echo "  mvn exec:java -Dexec.mainClass=\"com.example.Main\""
+    echo "Or simply:"
+    echo "  javac -d target/classes src/main/java/com/example/Main.java"
+    echo "  java -cp target/classes com.example.Main"
+  else
+    echo "Java Hello World project already exists, skipping creation."
+  fi
 fi
 
 # Start code-server

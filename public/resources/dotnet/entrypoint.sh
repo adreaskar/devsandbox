@@ -12,17 +12,21 @@ if [ -n "$GIT_REPO_URL" ]; then
     echo "Failed to clone repository, continuing with empty workspace"
   fi
 else
-  # Create a .NET Hello World boilerplate if no repository is provided
-  echo "No repository provided. Creating .NET Hello World boilerplate..."
   cd /home/dotnet/workspace
   
-  # Create a new console application
-  dotnet new console -n HelloWorld -o HelloWorld
-  
-  echo ".NET Hello World project created successfully!"
-  echo "To run the application:"
-  echo "  cd HelloWorld"
-  echo "  dotnet run"
+  if [ ! -d "HelloWorld" ]; then
+    echo "No repository provided. Creating .NET Hello World boilerplate..."
+    
+    # Create a new console application
+    dotnet new console -n HelloWorld -o HelloWorld
+    
+    echo ".NET Hello World project created successfully!"
+    echo "To run the application:"
+    echo "  cd HelloWorld"
+    echo "  dotnet run"
+  else
+    echo ".NET Hello World project already exists, skipping creation."
+  fi
 fi
 
 # Start code-server

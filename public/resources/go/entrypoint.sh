@@ -12,16 +12,17 @@ if [ -n "$GIT_REPO_URL" ]; then
     echo "Failed to clone repository, continuing with empty workspace"
   fi
 else
-  # Create a Go Hello World boilerplate if no repository is provided
-  echo "No repository provided. Creating Go Hello World boilerplate..."
   cd /home/gouser/workspace
   
-  # Create project directory
-  mkdir -p hello-world
-  cd hello-world
-  
-  # Initialize Go module
-  go mod init hello-world
+  if [ ! -d "hello-world" ]; then
+    echo "No repository provided. Creating Go Hello World boilerplate..."
+    
+    # Create project directory
+    mkdir -p hello-world
+    cd hello-world
+    
+    # Initialize Go module
+    go mod init hello-world
   
   # Create main.go with HTTP server
   cat > main.go << 'EOF'
@@ -46,11 +47,14 @@ func main() {
     log.Fatal(http.ListenAndServe(port, nil))
 }
 EOF
-  
-  echo "Go Hello World project created successfully!"
-  echo "To run the application:"
-  echo "  cd hello-world"
-  echo "  go run main.go"
+    
+    echo "Go Hello World project created successfully!"
+    echo "To run the application:"
+    echo "  cd hello-world"
+    echo "  go run main.go"
+  else
+    echo "Go Hello World project already exists, skipping creation."
+  fi
 fi
 
 # Start code-server

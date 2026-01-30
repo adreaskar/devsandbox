@@ -13,15 +13,17 @@ if [ -n "$GIT_REPO_URL" ]; then
   fi
 else
   # Create a Rust Hello World boilerplate if no repository is provided
-  echo "No repository provided. Creating Rust Hello World boilerplate..."
   cd /home/rustuser/workspace
   
-  # Create a new binary project
-  cargo new hello-world
-  cd hello-world
-  
-  # Replace main.rs with HTTP server example
-  cat > src/main.rs << 'EOF'
+  if [ ! -d "hello-world" ]; then
+    echo "No repository provided. Creating Rust Hello World boilerplate..."
+    
+    # Create a new binary project
+    cargo new hello-world
+    cd hello-world
+    
+    # Replace main.rs with HTTP server example
+    cat > src/main.rs << 'EOF'
 use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
@@ -56,11 +58,14 @@ fn handle_connection(mut stream: TcpStream) {
     stream.flush().unwrap();
 }
 EOF
-  
-  echo "Rust Hello World project created successfully!"
-  echo "To run the application:"
-  echo "  cd hello-world"
-  echo "  cargo run"
+    
+    echo "Rust Hello World project created successfully!"
+    echo "To run the application:"
+    echo "  cd hello-world"
+    echo "  cargo run"
+  else
+    echo "Rust Hello World project already exists, skipping creation."
+  fi
 fi
 
 # Start code-server
