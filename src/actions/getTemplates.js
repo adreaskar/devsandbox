@@ -12,9 +12,7 @@ export async function getTemplates() {
     // Fetch all templates, sorted by newest first
     // .lean() returns a plain JS object, but we still serialize
     // to ensure _id and dates are stringified safely for Next.js
-    const templates = await Template.find({})
-      .sort({ createdAt: -1 })
-      .populate("owner", "name username"); // Optional: Get owner details if needed
+    const templates = await Template.find({}).sort({ createdAt: -1 });
 
     return JSON.parse(JSON.stringify(templates));
   } catch (error) {
@@ -44,7 +42,7 @@ export async function getActiveTemplates() {
     const activeTemplates = templates.filter((template) => {
       // Filter workspaces where workspace.stack matches template.stackId
       const activeInstances = workspaces.filter(
-        (ws) => ws.stack === template.stackId
+        (ws) => ws.stack === template.stackId,
       );
 
       return activeInstances.length > 0; // Keep template if it has active instances
