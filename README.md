@@ -72,7 +72,7 @@ Cloud-based development environment platform for creating instant, containerized
    ```
 
 6. **Access the app:**
-   - App: http://localhost:3000
+   - App: http://localhost:8080
 
 ---
 
