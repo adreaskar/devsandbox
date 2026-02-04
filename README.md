@@ -103,7 +103,7 @@ Cloud-based development environment platform for creating instant, containerized
 ```
 devsandbox/
 ├── public/
-│   └── resources/          # Stack templates (Dockerfiles, entrypoints)
+│   └── resources/         # Stack templates (Dockerfiles, entrypoints)
 │       ├── dotnet/
 │       ├── go/
 │       ├── java/
@@ -113,7 +113,7 @@ devsandbox/
 │       ├── python/
 │       └── django/
 ├── src/
-│   ├── actions/            # Server actions
+│   ├── actions/           # Server actions
 │   ├── app/               # Next.js app router
 │   ├── components/        # React components
 │   ├── lib/               # Utilities
